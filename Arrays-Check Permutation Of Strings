@@ -1,0 +1,37 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Permutation
+{
+    static int max_chars=256;
+    static boolean arePerm(char[] str1,char str2[])
+    {
+        int i;
+        int len1=str1.length;
+        int len2=str2.length;
+        if (len1!=len2)
+           return false;
+        int count[]=new int[max_chars];
+        Arrays.fill(count,0);
+        for(i=0;i<len1;i++)
+        {
+            count[str1[i]]++;
+            count[str2[i]]--;
+        }
+        for (i=0;i<max_chars;i++) 
+        if (count[i]!=0) 
+            return false; 
+        return true; 
+    }
+    
+	public static void main(String[] args) {
+	Scanner s=new Scanner(System.in);
+	System.out.println("Enter the two strings");
+	char str1[] = s.nextLine().toCharArray(); 
+    char str2[] = s.nextLine().toCharArray(); 
+          
+        if (arePerm(str1,str2)) 
+            System.out.println("Yes,the two strings are permuted !"); 
+        else
+            System.out.println("Strings are Not permuted ");
+	}
+}

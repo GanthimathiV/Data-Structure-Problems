@@ -1,0 +1,69 @@
+import java.util.HashSet;
+import java.util.Scanner;
+class removeDuplicate
+{
+  class Node
+  {
+    int data;
+    Node next;
+    Node(int d)
+    {
+      data=d;
+      next=null;
+    }
+  }
+  static Node head;
+  void pushElts(int nd)
+  {
+    Node new_node=new Node(nd);
+    new_node.next=head;
+    head=new_node;
+  }
+  void removeDups()
+  {
+     HashSet hs=new HashSet();
+     Node curr=head;
+     Node prev=null;
+     while(curr!=null)
+     {
+       int currval=curr.data;
+       if(hs.contains(currval))
+       {
+         prev.next=curr.next;
+       }
+       else
+       {
+         hs.add(currval);
+         prev=curr;
+       }
+       curr=curr.next;
+     }
+  }
+  void printList()
+  {
+    Node temp=head;
+    while(temp.next!=null)
+    {
+      System.out.print(temp.data+"->");
+      temp=temp.next;
+    }
+    System.out.print(temp.data);
+  }
+  public static void main(String[] gm)
+  {
+    Scanner s=new Scanner(System.in);
+    removeDuplicate gv=new removeDuplicate();
+    System.out.println("Enter the no of elements in the List:");
+    int no=s.nextInt();
+    System.out.println("Enter the Elements in the list:");
+    for(int i=0;i<no;i++)
+    {
+      gv.pushElts(s.nextInt());
+    }
+    System.out.println("The Given List :");
+    gv.printList();
+    gv.removeDups();
+    System.out.println("\nThe List after removing Duplicates :");
+    gv.printList();
+  }
+}

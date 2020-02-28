@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class uniqChars
+{
+   boolean isuniqChars(String str)
+   {
+     int checker=0;
+     for(int i=0;i<str.length();i++)
+     {
+       int bitAtIndex=str.charAt(i)-'a';
+       if((checker&(1<<bitAtIndex))>0)
+           return false;
+       checker=checker|(1<<bitAtIndex);
+     }
+     return true;
+   }
+    
+	public static void main(String[] args) {
+	    uniqChars gm=new uniqChars();
+	    Scanner s=new Scanner(System.in);
+		System.out.println("Enter the String : ");
+		String str=s.nextLine();
+		if(gm.isuniqChars(str))
+        System.out.println("The String has Unique Characters");
+    else
+        System.out.println("The String has Duplicate Characters");
+	}
+}
