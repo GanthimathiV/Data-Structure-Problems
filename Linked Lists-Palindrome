@@ -1,0 +1,81 @@
+import java.util.Scanner;
+class llistPalindrome
+{
+  class Node
+  {
+    char data;
+    Node next;
+    Node(char d)
+    {
+      data=d;
+      next=null;
+    }
+  }
+  static Node head;
+  public void pushElts(char nd)
+  {
+    Node new_node=new Node(nd);
+    new_node.next=head;
+    head=new_node;
+  }
+  public void reverseList()
+  {
+    Node prev=null;
+    Node next=null;
+    Node curr=head;
+    while(curr!=null)
+    {
+      next=curr.next;
+      curr.next=prev;
+      prev=curr;
+      curr=next;
+    }
+    head=prev;
+  }
+  public boolean compareLists(Node head1,Node head2)
+  {
+    Node temp1=head1;
+    Node temp2=head2;
+    while(temp1!=null && temp2!=null)
+    {
+      if(temp1.data==temp2.data)
+      {
+        temp1=temp1.next;
+        temp2=temp2.next;
+      }
+      else
+         return false;
+    }
+    return true; 
+    } 
+  public void printList()
+  {
+    Node temp=head;
+    while(temp.next!=null)
+    {
+      System.out.print(temp.data+"->");
+      temp=temp.next;
+    }
+    System.out.print(temp.data);
+  }
+  public static void main(String[] args) {
+    Scanner s=new Scanner(System.in);
+    llistPalindrome gv=new llistPalindrome();
+    System.out.println("Enter the no of elements in the List to be checked :");
+    int no=s.nextInt();
+    System.out.println("Enter the Elements in the list:");
+    for(int i=0;i<no;i++)
+    {
+      gv.pushElts(s.next().charAt(0));
+    }
+    System.out.println("The Given List :");
+    gv.printList();
+    Node l1=head;
+    gv.reverseList();
+    Node l2=head;
+    if(gv.compareLists(l1,l2))
+       System.out.println("\nThe Given List is a Palindrome!");
+    else
+       System.out.println("\nThe Given List is NOT a Palindrome!");
+  }
+}
