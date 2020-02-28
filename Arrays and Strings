@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class stringCompress
+{
+    public static void stringCompressed(String str)
+    {
+        String str1=new String();
+        int len=str.length();
+        for(int i=0;i<len;i++)
+        {
+            int count=1;
+            while(i<len-1 && str.charAt(i)==str.charAt(i+1))
+            {
+                count++;
+                i++;
+            }
+            str1+=str.charAt(i);
+            str1+=count;
+        }
+        if (str1.length()<len)
+        {
+           System.out.print(str1);
+        }
+        else
+        {
+           System.out.print(str);
+        }
+    }
+	public static void main(String[] args) {
+	    Scanner s=new Scanner(System.in);
+	    System.out.println("Enter the String to be compressed : ");
+		String input=s.next();
+		System.out.println("Compressed String : ");
+		stringCompressed(input);
+	}
+}
