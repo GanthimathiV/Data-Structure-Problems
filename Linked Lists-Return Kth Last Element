@@ -1,0 +1,64 @@
+import java.util.Scanner;
+public class returnKthlast
+{
+    class Node 
+    {
+        int data;
+        Node next;
+        Node(int d)
+        {
+            data=d;
+            next=null;
+        }
+    }
+    Node head;
+    public void pushElts(int nd)
+    {
+        Node new_node=new Node(nd);
+        new_node.next=head;
+        head=new_node;
+    }
+    public void kthlast(int n)
+    {
+        int len=0;
+        Node temp=head;
+        while(temp!=null)
+        {
+            temp=temp.next;
+            len++;
+        }
+        temp=head;
+        for(int i=1;i<len-n+1;i++)
+        {
+            temp=temp.next;
+        }
+        System.out.print("\nThe Kth last element of the given list is : ");
+        System.out.print(temp.data);
+    }
+    public void printList()
+    {
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print(temp.data);
+    }
+	public static void main(String[] args) {
+		returnKthlast gm=new returnKthlast();
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter the number of elements to be inserted in the Linked List:");
+		int no=s.nextInt();
+		System.out.println("Enter the elements to be inserted in the Linked List:(inserts elements at the front of the list)");
+		for(int j=0;j<no;j++)
+		{
+		    gm.pushElts(s.nextInt());
+		}
+		System.out.println("Enter the kth value to be deleted from last:");
+		int k=s.nextInt();
+		System.out.println("The Given List :");
+		gm.printList();
+		gm.kthlast(k);
+	}
+}
