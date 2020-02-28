@@ -1,0 +1,21 @@
+import java.util.Scanner;
+class stringRotation
+{
+  public static boolean isSubstring(String orig,String rot)
+  {
+    if (orig.length()!=rot.length())
+        return false;
+    String str3=orig+rot;
+    return str3.contains(rot);
+  }
+  public static void main(String[] args) {
+    Scanner s=new Scanner(System.in);
+    System.out.println("Enter two strings to be checked :");
+    String str1=s.next();
+    String str2=s.next();
+    if(isSubstring(str1,str2))
+       System.out.println(str2+" is the rotation of "+str1);
+    else
+       System.out.println("The Given Strings aren't rotated!");
+  }
+}
