@@ -1,0 +1,60 @@
+import java.util.Scanner;
+public class delMidelt
+{
+    class Node 
+    {
+        int data;
+        Node next;
+        Node(int d)
+        {
+            data=d;
+            next=null;
+        }
+    }
+    Node head=null;
+    void push(int nd)
+    {
+        Node new_node=new Node(nd);
+        new_node.next=head;
+        head=new_node;
+    }
+    void delMiddle()
+    {
+        Node slow_ptr=head;
+        Node fast_ptr=head;
+        Node prev=null;
+        while(fast_ptr!=null && fast_ptr.next!=null)
+        {
+            fast_ptr=fast_ptr.next.next;
+            prev=slow_ptr;
+            slow_ptr=slow_ptr.next;
+        }
+        prev.next=slow_ptr.next;
+    }
+    void printList()
+    {
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            System.out.print(temp.data+"->");
+            temp=temp.next;
+        }
+        System.out.print(temp.data);
+    }
+	public static void main(String[] args) {
+	    delMidelt gm=new delMidelt();
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter the number of elements to be inserted in the Linked List:");
+		int no=s.nextInt();
+		System.out.println("Enter the elements to be inserted in the Linked List:(inserts elements at the front of the list)");
+		for(int j=0;j<no;j++)
+		{
+		    gm.push(s.nextInt());
+		}
+		System.out.println("Given list:");
+		gm.printList();
+		gm.delMiddle();
+		System.out.println("\nList after deleting middle element:");
+		gm.printList();
+	}
+}
