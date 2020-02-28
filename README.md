@@ -1,4 +1,4 @@
 # Data-Structure-Problems
-Arras & Strings
+Arrays & Strings
 Linked Lists
 Stacks
