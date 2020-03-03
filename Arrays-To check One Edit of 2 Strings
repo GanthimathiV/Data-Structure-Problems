@@ -1,0 +1,49 @@
+import java.util.Scanner;
+class Main 
+{ 
+static boolean isEditDistOne(String s1,String s2) 
+{  
+	int m=s1.length(),n=s2.length(); 
+	if (Math.abs(m-n)>1) 
+		return false; 
+	int count=0; 
+	int i=0,j=0; 
+	while (i<m && j<n) 
+	{ 
+		if (s1.charAt(i)!=s2.charAt(j)) 
+		{ 
+			if (count==1) 
+				return false;  
+			if (m>n) 
+				i++; 
+			else if(m<n) 
+				j++; 
+			else 
+			{ 
+				i++; 
+				j++; 
+			} 
+			count=1; 
+		} 
+		else 
+		{ 
+			i++; 
+			j++; 
+		} 
+	} 
+	if (i < m || j < n) 
+		count=1; 
+	return count==1; 
+}  
+public static void main (String[] args) 
+{ 
+  Scanner s=new Scanner(System.in);
+  System.out.println("Enter two Strings :");
+	String s1=s.next(); 
+	String s2=s.next(); 
+	if(isEditDistOne(s1,s2)) 
+		System.out.println("Yes,the strings' edit distance is one(or less than one)"); 
+	else
+		System.out.println("No,the strings' edit distance is more one"); 
+} 
+} 
