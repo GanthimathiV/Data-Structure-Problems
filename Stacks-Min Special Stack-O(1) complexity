@@ -1,0 +1,107 @@
+import java.util.*; 
+public class Main 
+{ 
+public static class MyStack 
+{  
+  Stack<Integer> s;
+	Integer minElt; 
+	MyStack() 
+  { 
+    s=new Stack<Integer>(); 
+  }  
+	void getMin() 
+	{ 
+		if (s.isEmpty()) 
+			System.out.println("Stack is empty");  
+		else
+			System.out.println("Minimum Element in the stack is: "+minElt); 
+	} 
+	void peek() 
+	{ 
+		if(s.isEmpty()) 
+		{ 
+			System.out.println("Stack is empty "); 
+			return; 
+		} 
+		Integer t=s.peek(); 
+		System.out.print("Top Most Element is: ");
+		if (t<minElt) 
+			System.out.println(minElt); 
+		else
+			System.out.println(t); 
+	} 
+	void pop() 
+	{ 
+		if(s.isEmpty()) 
+		{ 
+			System.out.println("Stack is empty"); 
+			return; 
+		} 
+		System.out.print("Top Most Element Removed: "); 
+		Integer t = s.pop();  
+		if(t<minElt) 
+		{ 
+			System.out.println(minElt); 
+			minElt=2*minElt-t; 
+		} 
+		else
+			System.out.println(t); 
+	} 
+	void push(Integer x) 
+	{ 
+		if (s.isEmpty()) 
+		{ 
+			minElt=x; 
+			s.push(x); 
+			System.out.println("Number Inserted: " + x); 
+			return; 
+		} 
+		if(x<minElt) 
+		{ 
+			s.push(2*x-minElt); 
+			minElt=x; 
+		} 
+		else
+			s.push(x); 
+		System.out.println("Number Inserted: " + x); 
+	} 
+}
+	public static void main(String[] args) 
+	{ 
+		MyStack ms=new MyStack(); 
+    Scanner g=new Scanner(System.in);
+    System.out.println("Operations to be Performed :\n1.Push\n2.GetMinimumElement\n3.Pop\n4.Peek\n");
+    int ch=1;
+    while(ch==1)
+    {
+      System.out.println("Enter your Choice:\n");
+      int choice=g.nextInt();
+    switch(choice)
+    {
+      case 1:
+         System.out.println("Enter no of elements to be pushed:");
+         int no=g.nextInt();
+         System.out.println("Enter the elements");
+         for(int i=0;i<no;i++)
+         {
+           	ms.push(g.nextInt()); 
+         }
+	       break;
+	    case 2: 
+		      ms.getMin(); 
+          break;
+		  case 3:
+		      ms.pop();
+          break; 
+	    case 4: 
+	      	ms.peek(); 
+          break;
+      default:
+          System.out.println("Please Enter Valid Choice");
+          break;
+    }
+    System.out.println("Do you want to perform any other operations?\nYes->press 1\nNo->press 0");
+    ch=g.nextInt();
+    }
+	} 
+} 
