@@ -1,0 +1,37 @@
+import java.util.Scanner;
+import java.util.Stack;
+class Main 
+{
+    public static Stack<Integer> sortstack(Stack<Integer> input)
+    {
+      Stack<Integer> tempstack=new Stack<Integer>();
+      while(!input.isEmpty())
+      {
+        int temp=input.pop();
+        while(!tempstack.isEmpty()&&tempstack.peek()>temp)
+        {
+          input.push(tempstack.pop());
+        }
+      tempstack.push(temp);
+      }
+      return tempstack;
+    }
+  public static void main(String[] args) 
+  {
+    Stack<Integer> input=new Stack<Integer>();
+    Scanner s=new Scanner(System.in);
+    System.out.println("Enter the no of elementd to be pushed in the stack");
+    int no=s.nextInt();
+    System.out.println("Enter the elements :");
+    for(int i=0;i<no;i++)
+    {
+      input.push(s.nextInt());
+    }
+    Stack<Integer> tmpStack=sortstack(input); 
+    System.out.println("Sorted numbers are:");
+    while (!tmpStack.empty()) 
+    { 
+       System.out.print(tmpStack.pop()+" "); 
+    }  
+  }
+}
